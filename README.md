@@ -5,11 +5,12 @@ The SPI analysis is following the training conducted in 28 Jan 2020 by [NASA ARS
 
 Some of the step have been modified and adjusted based on experiencing of several problems during the training, and latest version of [Climate Indices in Python](https://github.com/monocongo/climate_indices) software is used in this tutorial. While NASA ARSET training still used the official release version from [U.S. Drought Portal](https://www.drought.gov/drought/python-climate-indices)
 
-Information on SPI background, software requirement, data acquisition and SPI analysis using (IMERG)[https://gpm.nasa.gov/category/keywords/imerg] data, please check the (notebook)[https://github.com/wfpidn/SPI/blob/master/SPI_based_on_IMERG.ipynb]
+Information on SPI background, software requirement, data acquisition and SPI analysis using [IMERG](https://gpm.nasa.gov/category/keywords/imerg) data, please check the [notebook](https://github.com/wfpidn/SPI/blob/master/SPI_based_on_IMERG.ipynb)
 
-Below is another way to acquired different data ((CHIRPS)[https://chc.ucsb.edu/data/chirps]) using different tool ((CDO)[https://code.mpimet.mpg.de/projects/cdo] - Climate Data Operator)
+Below is another way to acquired different data [CHIRPS](https://chc.ucsb.edu/data/chirps) using different tool [CDO](https://code.mpimet.mpg.de/projects/cdo) - Climate Data Operator
+
 ## CHIRPS data acquisition for SPI analysis using CDO
-Download CDO and install from source via https://code.mpimet.mpg.de/projects/cdo/files or you can install via ```Homebrew``` or ```Conda```
+Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
 - Download all dekad data in netcdf format from:
   - ```https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
 - Crop with bounding box
