@@ -14,7 +14,7 @@ Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download
 - Download all dekad data in netcdf format from:
   - ```https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
 - Crop with bounding box
-  - ```for fl in *.nc; do cdo sellonlatbox,60,180,-23.5,50 $fl ./Regional/rbb_cli"_"$fl; done```
+  - ```for fl in *.nc; do cdo sellonlatbox,114.3,115.8,-8,-9 $fl bali_cli"_"$fl; done```
 - Merge all netcdf in a folder into single netcdf
   - ```cdo mergetime rbb_*.nc chirps_dekad.nc```
 - Check result and metadata
