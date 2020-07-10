@@ -10,17 +10,27 @@ Information on SPI background, software requirement, data acquisition and SPI an
 Below is another way to acquired different data ([CHIRPS](https://chc.ucsb.edu/data/chirps)) using different tool ([CDO](https://code.mpimet.mpg.de/projects/cdo) - Climate Data Operator)
 
 ## CHIRPS data acquisition for SPI analysis using CDO
-Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
+### Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
 - Download all dekad data in netcdf format from:
+
   - ```https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
+  
 - Crop with bounding box
+
   - ```for fl in *.nc; do cdo sellonlatbox,114.3,115.8,-8,-9 $fl bali_cli"_"$fl; done```
+  
 - Merge all netcdf in a folder into single netcdf
+
   - ```cdo mergetime bali_*.nc chirps_dekad.nc```
+  
 - Check result and metadata
+
   - ```ncdump -h chirps_dekad.nc```
+  
 - Calculate rolling window accumulation for 3 dekads
+
   - ```cdo runsum,3 chirps_dekad.nc chirps_monthly_bydekad.nc```
+  
 - Check result and metadata
   - ```ncdump -h chirps_dekad.nc```
 - Extract dekad 1,2 and 3 into separate files
@@ -44,7 +54,8 @@ Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download
   - Dekad3: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c21.nc chirps_monthly_bydekad_d21.nc```
 - Check result and metadata to make sure everything is set as required to run SPI
   - ```ncdump -h chirps_monthly_bydekad_d01.nc```
-- Calculate SPI
+
+### Calculate SPI
   - Dekad1: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc --overwrite```
   - Dekad2: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc --overwrite```
   - Dekad3: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc --overwrite```
