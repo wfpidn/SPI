@@ -11,9 +11,9 @@ Below is another way to acquired different data ([CHIRPS](https://chc.ucsb.edu/d
 
 ## CHIRPS data acquisition for SPI analysis using CDO
 ### Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
-- Download all dekad data in netcdf format from:
+- Download using ```wget``` all dekad data in netcdf format from:
 
-  - ```https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
+  - ```wget -r https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
   
 - Crop with bounding box
 
