@@ -17,7 +17,7 @@ Below is another way to acquired different data ([CHIRPS](https://chc.ucsb.edu/d
   
 - Crop with bounding box
 
-  - ```for fl in *.nc; do cdo sellonlatbox,114.3,115.8,-8,-9 $fl bali_cli"_"$fl; done```
+  - ```for fl in *.nc; do cdo sellonlatbox,114.3,115.8,-8,-9 $fl bali_cli"_"$fl; done``` ==> bounding box for Bali with format ```lon1,lon2,lat1,lat2```
   
 - Merge all netcdf in a folder into single netcdf
 
