@@ -33,7 +33,7 @@ Below is another way to acquired different data ([CHIRPS](https://chc.ucsb.edu/d
   
 - Check result and metadata
 
-  - ```ncdump -h chirps_dekad.nc```
+  - ```ncdump -h chirps_monthly_bydekad.nc```
   
 - Extract dekad 1,2 and 3 into separate files
 
