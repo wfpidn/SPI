@@ -16,7 +16,7 @@ Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download
 - Crop with bounding box
   - ```for fl in *.nc; do cdo sellonlatbox,114.3,115.8,-8,-9 $fl bali_cli"_"$fl; done```
 - Merge all netcdf in a folder into single netcdf
-  - ```cdo mergetime rbb_*.nc chirps_dekad.nc```
+  - ```cdo mergetime bali_*.nc chirps_dekad.nc```
 - Check result and metadata
   - ```ncdump -h chirps_dekad.nc```
 - Calculate rolling window accumulation for 3 dekads
