@@ -103,8 +103,8 @@ CDO required the variable should be in ```"time, lat, lon"```, while the output 
 
   ``` 
   for t in `cdo showdate CHIRPS_01_spi_gamma_1_month_rev.nc`; do
-	   cdo seldate,$t CHIRPS_01_spi_gamma_1_month_rev.nc dummy.nc
-	   gdal_translate dummy.nc $t.tif
+    cdo seldate,$t CHIRPS_01_spi_gamma_1_month_rev.nc dummy.nc
+    gdal_translate dummy.nc $t.tif
   done
   ```
 
