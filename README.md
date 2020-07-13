@@ -88,7 +88,8 @@ In the above example we demonstrate how distribution fitting parameters can be s
 ### Open the result using [Panoply](https://www.giss.nasa.gov/tools/panoply/)
 
 ### Convert the result to GeoTIFF
-To convert the result into GeoTIFF format, you need additional software: GDAL and NCO. Both software can be installed via ```Homebrew``` or ```conda```
+To convert the result into GeoTIFF format, you need additional software: GDAL and NCO. Both software can be installed via ```Homebrew``` or ```conda```.
+
 CDO required the variable should be in ```"time, lat, lon"```, while the output from SPI: ```CHIRPS_XX_spi_xxxxx_x_month.nc``` in ```"lat, lon, time"```, you can check this via ```ncdump -h file.nc```
 
 - Let's re-order the variables into ```time,lat,lon``` using ```ncpdq``` command from NCO
