@@ -39,19 +39,19 @@ Why CHIRPS? Because I want to get higher resolution, more frequent monitoring (u
   
 - Extract dekad 1,2 and 3 into separate files
 
-  - ```cdo selday,1 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a11.nc```
-  - ```cdo selday,11 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a21.nc```
-  - ```cdo selday,21 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a01.nc```
+  - ```cdo selday,1 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a01.nc```
+  - ```cdo selday,11 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a11.nc```
+  - ```cdo selday,21 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a21.nc```
   
 - Edit variable name for longitude to lon, and latitude to lat
 
-  - Dekad1: ```cdo chname,longitude,lon chirps_monthly_bydekad_a11.nc chirps_monthly_bydekad_b11.nc```
-  - Dekad1: ```cdo chname,latitude,lat chirps_monthly_bydekad_b11.nc chirps_monthly_bydekad_c11.nc```
-  - Dekad2: ```cdo chname,longitude,lon chirps_monthly_bydekad_a21.nc chirps_monthly_bydekad_b21.nc```
-  - Dekad2: ```cdo chname,latitude,lat chirps_monthly_bydekad_b21.nc chirps_monthly_bydekad_c21.nc```
-  - Dekad3: ```cdo chname,longitude,lon chirps_monthly_bydekad_a01.nc chirps_monthly_bydekad_b01.nc```
-  - Dekad3: ```cdo chname,latitude,lat chirps_monthly_bydekad_b01.nc chirps_monthly_bydekad_c01.nc```
-  
+  - Dekad1: ```cdo chname,longitude,lon chirps_monthly_bydekad_a01.nc chirps_monthly_bydekad_b01.nc```
+  - Dekad1: ```cdo chname,latitude,lat chirps_monthly_bydekad_b01.nc chirps_monthly_bydekad_c01.nc```
+  - Dekad2: ```cdo chname,longitude,lon chirps_monthly_bydekad_a11.nc chirps_monthly_bydekad_b11.nc```
+  - Dekad2: ```cdo chname,latitude,lat chirps_monthly_bydekad_b11.nc chirps_monthly_bydekad_c11.nc```
+  - Dekad3: ```cdo chname,longitude,lon chirps_monthly_bydekad_a21.nc chirps_monthly_bydekad_b21.nc```
+  - Dekad3: ```cdo chname,latitude,lat chirps_monthly_bydekad_b21.nc chirps_monthly_bydekad_c21.nc```
+
 - Check result and metadata
 
   - ```ncdump -h chirps_monthly_bydekad_c01.nc```
