@@ -113,7 +113,8 @@ CDO required the variable should be in ```"time, lat, lon"```, while the output 
   ``` 
   for t in `cdo showdate CHIRPS_01_spi_gamma_1_month_rev.nc`; do
     cdo seldate,$t CHIRPS_01_spi_gamma_1_month_rev.nc dummy.nc
-    gdal_translate dummy.nc $t.tif
+    gdal_translate -of GTiff -a_ullr <top_left_lon> <top_left_lat> <bottom_right_lon> <bottom_right_lat> \
+-a_srs EPSG:4326 -co COMPRESS=LZW -co PREDICTOR=1 dummy.nc $t.tif
   done
   ```
 
