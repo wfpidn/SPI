@@ -12,7 +12,7 @@ Below is another way to acquired different data ([CHIRPS](https://chc.ucsb.edu/d
 Why CHIRPS? Because I want to get higher resolution, more frequent monitoring (updated every dekad ~ 10days), and long-term historical data from 1981 – now.
 
 ## CHIRPS data acquisition for SPI analysis using CDO
-### Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
+### 1. Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
 - Download using ```wget``` all dekad data in netcdf format from:
 
   - ```wget -r https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
@@ -70,7 +70,7 @@ Why CHIRPS? Because I want to get higher resolution, more frequent monitoring (u
 
   - ```ncdump -h chirps_monthly_bydekad_d01.nc```
 
-### Calculate SPI
+### 2. Calculate SPI
 In order to pre-compute fititng parameters for later use as inputs to subsequent SPI calculations we can save both gamma and Pearson distributinon fitting parameters to NetCDF, and later use this file as input for SPI calculations over the same calibration period.
 
   - Dekad1: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc --overwrite```
@@ -81,7 +81,7 @@ The above command will compute SPI (standardized precipitation index, both gamma
 
 The index will be computed at 1,2,3,6,9,12,24,36,48,60 and 72-month timescales. The output files will be <out_dir>/CHIRPS_spi_gamma_xx.nc, and <out_dir>/CHIRPS_spi_pearson_xx.nc. Parallelization will occur utilizing all CPUs.
 
-### **Notes**: Updating procedure when new data is coming
+### **3. Notes**: Updating procedure when new data is coming
 In the above example we demonstrate how distribution fitting parameters can be saved as NetCDF. This fittings NetCDF can then be used as pre-computed variables in subsequent SPI computations. Initial command computes both distribution fitting values and SPI for various month scales. 
 
 The distribution fitting variables are written to the file specified by the ```–save_params``` option. 
@@ -93,9 +93,9 @@ The second command also computes SPI but instead of computing the distribution f
   - **Dekad3**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc```
 
 
-### Open the result using [Panoply](https://www.giss.nasa.gov/tools/panoply/)
+### 4. Open the result using [Panoply](https://www.giss.nasa.gov/tools/panoply/)
 
-### Convert the result to GeoTIFF
+### 5. Convert the result to GeoTIFF
 To convert the result into GeoTIFF format, you need additional software: GDAL and NCO. Both software can be installed via ```Homebrew``` or ```conda```.
 
 CDO required the variable should be in ```"time, lat, lon"```, while the output from SPI: ```CHIRPS_XX_spi_xxxxx_x_month.nc``` in ```"lat, lon, time"```, you can check this via ```ncdump -h file.nc```
