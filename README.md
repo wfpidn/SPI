@@ -83,27 +83,29 @@ The above command will compute SPI (standardized precipitation index, both gamma
 
 The index will be computed at 1,2,3,6,9,12,24,36,48,60 and 72-month timescales. The output files will be <out_dir>/CHIRPS_spi_gamma_xx.nc, and <out_dir>/CHIRPS_spi_pearson_xx.nc. Parallelization will occur utilizing all CPUs.
 
->### **3. Notes**: Updating procedure when new data is coming
->What if the new data is coming (September 2020)? Should we re-run again for the whole periods, 1981 to date? That's not practical as it required lot of storage and time processing if you do for bigger coverage (country or regional analysis).
->
->To update SPI up to SPI72, we should have data at least 6 years back (2014) from the latest (Sep 2020). To avoid computation for the whole periods (1981-2020), we could extract the data ```chirps_monthly_bydekad.nc``` result from step **1.e.** only for year 2014 to 2020, using command: 
->
->  - ```cdo selyear,2014/2020 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a.nc``` 
->
->After that, you can continue the process following above mentioned steps.
->
->In the above example (**Step 2**) we demonstrate how distribution fitting parameters can be saved as NetCDF. This fittings NetCDF can then be used as pre-computed variables in subsequent SPI computations. Initial command computes both distribution fitting values and SPI for various month scales. 
->
->The distribution fitting variables are written to the file specified by the ```--save_params``` option. 
->
->The second command also computes SPI but instead of computing the distribution fitting values it loads the pre-computed fitting values from the NetCDF file specified by the ```--load_params``` option. See below code:
->
->  - **Dekad 1**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc```
->  
->  - **Dekad 2**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc```
->  
->  - **Dekad 3**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc```
->
+
+> ### **3. Notes**: Updating procedure when new data is coming
+> What if the new data is coming (September 2020)? Should we re-run again for the whole periods, 1981 to date? That's not practical as it required lot of storage and time processing if you do for bigger coverage (country or regional analysis).
+> 
+> To update SPI up to SPI72, we should have data at least 6 years back (2014) from the latest (Sep 2020). To avoid computation for the whole periods (1981-2020), we could extract the data ```chirps_monthly_bydekad.nc``` result from step **1.e.** only for year 2014 to 2020, using command: 
+> 
+>   - ```cdo selyear,2014/2020 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a.nc``` 
+> 
+> After that, you can continue the process following above mentioned steps.
+> 
+> In the above example (**Step 2**) we demonstrate how distribution fitting parameters can be saved as NetCDF. This fittings NetCDF can then be used as pre-computed variables in subsequent SPI computations. Initial command computes both distribution fitting values and SPI for various month scales. 
+> 
+> The distribution fitting variables are written to the file specified by the ```--save_params``` option. 
+> 
+> The second command also computes SPI but instead of computing the distribution fitting values it loads the pre-computed fitting values from the NetCDF file specified by the ```--load_params``` option. See below code:
+> 
+>   - **Dekad 1**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc```
+>   
+>   - **Dekad 2**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc```
+>   
+>   - **Dekad 3**: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc```
+> 
+
 
 ### 4. Open the result using [Panoply](https://www.giss.nasa.gov/tools/panoply/)
 
