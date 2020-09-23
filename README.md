@@ -13,37 +13,37 @@ Why CHIRPS? Because I want to get higher resolution, more frequent monitoring (u
 
 ## CHIRPS data acquisition for SPI analysis using CDO
 ### 1. Download CDO and [install](https://code.mpimet.mpg.de/projects/cdo/wiki#Download-Compile-Install) from [source](https://code.mpimet.mpg.de/projects/cdo/files) or you can install via ```Homebrew``` or ```Conda```
-- Download using ```wget``` all dekad data in netcdf format from:
+a. Download using ```wget``` all dekad data in netcdf format from Jan 1981 to Aug 2020:
 
   - ```wget -r https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/netcdf/```
   
-- Crop with bounding box
+b. Crop with bounding box
 
   - ```for fl in *.nc; do cdo sellonlatbox,114.3,115.8,-8,-9 $fl bali_cli"_"$fl; done``` ==> bounding box for Bali with format ```lon1,lon2,lat1,lat2```
   
-- Merge all netcdf in a folder into single netcdf
+c. Merge all netcdf in a folder into single netcdf
 
   - ```cdo mergetime bali_*.nc chirps_dekad.nc```
   
-- Check result and metadata
+d. Check result and metadata
 
   - ```ncdump -h chirps_dekad.nc```
   
-- Calculate rolling window accumulation for 3 dekads
+e. Calculate rolling window accumulation for 3 dekads
 
   - ```cdo runsum,3 chirps_dekad.nc chirps_monthly_bydekad.nc```
   
-- Check result and metadata
+f. Check result and metadata
 
   - ```ncdump -h chirps_monthly_bydekad.nc```
   
-- Extract dekad 1,2 and 3 into separate files
+g. Extract dekad 1,2 and 3 into separate files
 
   - ```cdo selday,1 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a01.nc```
   - ```cdo selday,11 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a11.nc```
   - ```cdo selday,21 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a21.nc```
   
-- Edit variable name for longitude to lon, and latitude to lat
+h. Edit variable name for longitude to lon, and latitude to lat
 
   - Dekad1: ```cdo chname,longitude,lon chirps_monthly_bydekad_a01.nc chirps_monthly_bydekad_b01.nc```
   - Dekad1: ```cdo chname,latitude,lat chirps_monthly_bydekad_b01.nc chirps_monthly_bydekad_c01.nc```
@@ -52,37 +52,45 @@ Why CHIRPS? Because I want to get higher resolution, more frequent monitoring (u
   - Dekad3: ```cdo chname,longitude,lon chirps_monthly_bydekad_a21.nc chirps_monthly_bydekad_b21.nc```
   - Dekad3: ```cdo chname,latitude,lat chirps_monthly_bydekad_b21.nc chirps_monthly_bydekad_c21.nc```
 
-- Check result and metadata
+i. Check result and metadata
 
   - ```ncdump -h chirps_monthly_bydekad_c01.nc```
   
-- Show attributes
+j. Show attributes
 
   - ```cdo -s showatts chirps_monthly_bydekad_c01.nc```
   
-- Edit precipitation unit from mm/dekad to mm
+k. Edit precipitation unit from mm/dekad to mm
 
   - Dekad1: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c01.nc chirps_monthly_bydekad_d01.nc```
   - Dekad2: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c11.nc chirps_monthly_bydekad_d11.nc```
   - Dekad3: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c21.nc chirps_monthly_bydekad_d21.nc```
   
-- Check result and metadata to make sure everything is set as required to run SPI
+l. Check result and metadata to make sure everything is set as required to run SPI
 
   - ```ncdump -h chirps_monthly_bydekad_d01.nc```
 
 ### 2. Calculate SPI
 In order to pre-compute fititng parameters for later use as inputs to subsequent SPI calculations we can save both gamma and Pearson distributinon fitting parameters to NetCDF, and later use this file as input for SPI calculations over the same calibration period.
 
-  - Dekad1: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc --overwrite```
-  - Dekad2: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc --overwrite```
-  - Dekad3: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc --overwrite```
+  a. Dekad1: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc --overwrite```
+  b. Dekad2: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc --overwrite```
+  c. Dekad3: ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc --overwrite```
 
 The above command will compute SPI (standardized precipitation index, both gamma and Pearson Type III distributions) from an input precipitation dataset (in this case, CHIRPS precipitation dataset). The input dataset is 3-dekads rainfall accumulation data and the calibration period used will be Jan-1981 through Dec-2019. 
 
 The index will be computed at 1,2,3,6,9,12,24,36,48,60 and 72-month timescales. The output files will be <out_dir>/CHIRPS_spi_gamma_xx.nc, and <out_dir>/CHIRPS_spi_pearson_xx.nc. Parallelization will occur utilizing all CPUs.
 
 ### **3. Notes**: Updating procedure when new data is coming
-In the above example we demonstrate how distribution fitting parameters can be saved as NetCDF. This fittings NetCDF can then be used as pre-computed variables in subsequent SPI computations. Initial command computes both distribution fitting values and SPI for various month scales. 
+What if the new data is coming (September 2020)? Should we re-run again for the whole periods, 1981 to date? That's not practical as it required lot of storage and time processing if you do for bigger coverage (country or regional analysis).
+
+To update SPI up to SPI72, we should have data at least 6 years back (2014) from the latest (Sep 2020). To avoid computation for the whole periods (1981-2020), we could extract the data ```chirps_monthly_bydekad.nc``` result from step **1.e.** only for year 2014 to 2020, using command: 
+
+  - ```cdo selyear,2014/2020 chirps_monthly_bydekad.nc chirps_monthly_bydekad_a.nc``` 
+
+After that, you can continue the process following above mentioned steps.
+
+In the above example (**Step 2**) we demonstrate how distribution fitting parameters can be saved as NetCDF. This fittings NetCDF can then be used as pre-computed variables in subsequent SPI computations. Initial command computes both distribution fitting values and SPI for various month scales. 
 
 The distribution fitting variables are written to the file specified by the ```–save_params``` option. 
 
