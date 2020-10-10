@@ -18,23 +18,23 @@ This step-by-step guide was tested using Macbook Pro, 2.9 GHz 6-Core Intel Core 
 
 If you encounter a problem, please look for a online solution. The installation and configuration described below is performed using a bash shell on macOS. Windows users will need to install and configure a bash shell in order to follow the usage shown below. Try to use [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for this purpose.
 
-1.1. If you are new to using Bash refer to the following lessons with Software Carpentry: http://swcarpentry.github.io/shell-novice/
+  1.1. If you are new to using Bash refer to the following lessons with Software Carpentry: http://swcarpentry.github.io/shell-novice/
 
-1.2. If you don't have [Homebrew](https://brew.sh/), you can install it by pasting below code in your macOS terminal.
+  1.2. If you don't have [Homebrew](https://brew.sh/), you can install it by pasting below code in your macOS terminal.
 
   - ```bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"```
 
-1.3. Install wget (for downloading data). Use Hombrew to install it by pasting below code in your macOS terminal.
+  1.3. Install wget (for downloading data). Use Hombrew to install it by pasting below code in your macOS terminal.
 
   - ```brew install wget```
 
-1.4. Download and install [Panoply Data Viewer](https://www.giss.nasa.gov/tools/panoply/) from [NASA GISS](https://www.giss.nasa.gov/tools/panoply/download/) on your machine: [macOS](https://www.giss.nasa.gov/tools/panoply/download/PanoplyMacOS-4.11.4.dmg), [Windows](https://www.giss.nasa.gov/tools/panoply/download/PanoplyWin-4.11.4.zip), [Linux](https://www.giss.nasa.gov/tools/panoply/download/PanoplyJ-4.11.4.zip).
+  1.4. Download and install [Panoply Data Viewer](https://www.giss.nasa.gov/tools/panoply/) from [NASA GISS](https://www.giss.nasa.gov/tools/panoply/download/) on your machine: [macOS](https://www.giss.nasa.gov/tools/panoply/download/PanoplyMacOS-4.11.4.dmg), [Windows](https://www.giss.nasa.gov/tools/panoply/download/PanoplyWin-4.11.4.zip), [Linux](https://www.giss.nasa.gov/tools/panoply/download/PanoplyJ-4.11.4.zip).
 
-1.5. Download and install Anaconda Python version 3.7 on your machine: [macOS](https://repo.anaconda.com/archive/Anaconda3-2020.02-MacOSX-x86_64.pkg), [Windows](https://repo.anaconda.com/archive/Anaconda3-2020.02-Windows-x86_64.exe), [Linux](https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh).
+  1.5. Download and install Anaconda Python version 3.7 on your machine: [macOS](https://repo.anaconda.com/archive/Anaconda3-2020.02-MacOSX-x86_64.pkg), [Windows](https://repo.anaconda.com/archive/Anaconda3-2020.02-Windows-x86_64.exe), [Linux](https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh).
 
-1.6. Or you can use Miniconda: [macOS](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg), [Windows](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe), [Linux](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh)
+  1.6. Or you can use Miniconda: [macOS](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg), [Windows](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe), [Linux](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh)
 
-1.7. For Windows users, follow [this](https://arset.gsfc.nasa.gov/sites/default/files/water/20-IMERG/IMERG_Week2_FINAL.pdf) procedure, starting from pages 16.
+  1.7. For Windows users, follow [this](https://arset.gsfc.nasa.gov/sites/default/files/water/20-IMERG/IMERG_Week2_FINAL.pdf) procedure, starting from pages 16.
 
 
 ## 2. Configure the python environment
@@ -178,11 +178,7 @@ Let see the result.
 
 6.1. From the output directory in Finder, right-click file CHIRPS_11_spi_gamma_3_month.nc (you can download this file from this link: https://on.istan.to/3ntmTfi) and Open With Panoply.
 
-![Panoply Open Data](https://media-exp1.licdn.com/dms/image/C5612AQFNgfvHpdk7Vg/article-inline_image-shrink_1500_2232/0?e=1607558400&v=beta&t=1ttDn50_PEnz5g9LzLJbXMFsrg-PVddvnGc-oCZUdAY)
-
 6.2. From the Datasets tab select spi_gamma_1_month and click Create Plot
-
-![Create Plot](https://media-exp1.licdn.com/dms/image/C5612AQGKhuiLonK_Yw/article-inline_image-shrink_1500_2232/0?e=1607558400&v=beta&t=7u6wkBziju8WHNkxg5wEHtpJ1FpKyTm2AkdperrqaXs)
 
 6.3. In the Create Plot window select option Georeferenced Longitude-Latitude.
 
