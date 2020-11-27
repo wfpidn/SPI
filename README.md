@@ -123,23 +123,29 @@ Dekad 3
   - Dekad 1: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c01.nc chirps_monthly_bydekad_d01.nc```
   - Dekad 2: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c11.nc chirps_monthly_bydekad_d11.nc```
   - Dekad 3: ```cdo -setattribute,precip@units="mm" chirps_monthly_bydekad_c21.nc chirps_monthly_bydekad_d21.nc```
-  
-3.12. Check result and metadata to make sure everything is set as required to run SPI
 
-  - ```ncdump -h chirps_monthly_bydekad_d01.nc```
+3.12. Edit precipitation timestep from dekad to month
+
+  - Dekad 1: ```cdo -setattribute,precip@time_step="month" chirps_monthly_bydekad_d01.nc chirps_monthly_bydekad_e01.nc```
+  - Dekad 2: ```cdo -setattribute,precip@time_step="month" chirps_monthly_bydekad_d11.nc chirps_monthly_bydekad_e11.nc```
+  - Dekad 3: ```cdo -setattribute,precip@time_step="month" chirps_monthly_bydekad_d21.nc chirps_monthly_bydekad_e21.nc```
+  
+3.13. Check result and metadata to make sure everything is set as required to run SPI
+
+  - ```ncdump -h chirps_monthly_bydekad_e01.nc```
 
 
 ## 4. Calculate SPI
 In order to pre-compute fititng parameters for later use as inputs to subsequent SPI calculations we can save both gamma and Pearson distributinon fitting parameters to NetCDF, and later use this file as input for SPI calculations over the same calibration period.
 
 **Dekad 1**: 
-  - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc --overwrite```
+  - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_e01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc --overwrite```
 
 **Dekad 2**: 
-  - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc --overwrite```
+  - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_e11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc --overwrite```
 
 **Dekad 3**: 
-  - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc --overwrite```
+  - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_e21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --save_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc --overwrite```
 
 The above command will compute SPI (standardized precipitation index, both gamma and Pearson Type III distributions) from an input precipitation dataset (in this case, CHIRPS precipitation dataset). The input dataset is 3-dekads rainfall accumulation data and the calibration period used will be Jan-1981 through Dec-2019. 
 
@@ -162,13 +168,13 @@ The index will be computed at 1,2,3,6,9,12,24,36,48,60 and 72-month timescales. 
 > The second command also computes SPI but instead of computing the distribution fitting values it loads the pre-computed fitting values from the NetCDF file specified by the ```--load_params``` option. See below code:
 > 
 > **Dekad 1**: 
->   - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc```
+>   - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_e01.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_01 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_01_fitting.nc```
 >   
 > **Dekad 2**: 
->   - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc```
+>   - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_e11.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_11 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_11_fitting.nc```
 >   
 > **Dekad 3**: 
->   - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_d21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc```
+>   - ```spi --periodicity monthly --scales 1 2 3 6 9 12 24 36 48 60 72 --calibration_start_year 1981 --calibration_end_year 2019 --netcdf_precip /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/chirps_monthly_bydekad_e21.nc --var_name_precip precip --output_file_base /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Output/CHIRPS_21 --multiprocessing all --load_params /Users/bennyistanto/Temp/CHIRPS/SPI/Regional/Input/CHIRPS_21_fitting.nc```
 > 
 
 
