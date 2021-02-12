@@ -161,7 +161,7 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make it CHI
 		
 		![SPI_based_on_CHIRPS_GeoTIFF_02](/Exercise/img/SPI_based_on_CHIRPS_GeoTIFF_02.png)
 		
-		Navigate to your notebook directory (where you put *.ipynb file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Input_TIF` folder. Move it to `Input_nc` folder. 
+		Navigate to your notebook directory (where you put *.ipynb file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Script` folder. Move it to `Input_nc` folder. 
 
 * You also can get this data: java_cli_chirps_1months_1981_2020.nc via this link http://on.istan.to/3iRDl7e
 
