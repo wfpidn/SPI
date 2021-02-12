@@ -188,7 +188,7 @@ Data dimension and order must be written as  `lat`, `lon`, `time` or `time`, `la
 	* Data dimension and order are following the specification `time`, `lat`, `lon`
 	* The unit is in `mm`
 
-	So, everything is correct and I am ready to calculate SPI. Make sure in your Terminal still inside climate_indices environment. 
+	So, everything is correct and I am ready to calculate SPI. Make sure in your Terminal still inside `climate_indices` environment. 
 	
 	Other requirements and options related to the indices calculation, please follow https://climate-indices.readthedocs.io/en/latest/#indices-processing
 
