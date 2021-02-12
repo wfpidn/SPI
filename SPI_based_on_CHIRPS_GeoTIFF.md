@@ -135,16 +135,16 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make it CHI
 	
 	You MUST adjust the folder location (replace /path/to/directory/ with yours) in line 13 and 114.
 	
-	If you are using other data source (I assume all the data in WGS84), you need to adjust few code in:
-	
-	* Line 31: folder location.
-	* Line 40: start of the date
-	* Line 44: output name
-	* Line 53: date attribute
-	* Line 85-88: bounding box
-	* Line 110: output filename structure
-	* Line 114: folder location
-	* Line 120-122: date character location in a filename
+	>If you are using other data source (I assume all the data in WGS84), you need to adjust few code in:
+	>
+	>* Line 31: folder location.
+	>* Line 40: start of the date
+	>* Line 44: output name
+	>* Line 53: date attribute
+	>* Line 85-88: bounding box
+	>* Line 110: output filename structure
+	>* Line 114: folder location
+	>* Line 120-122: date character location in a filename
 
 * After everything is set, then you can execute the translation process (choose one or you can try both)
 	* Using Python in Terminal, navigate to your `Script` directory, type 
