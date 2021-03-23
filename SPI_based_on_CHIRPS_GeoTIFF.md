@@ -174,7 +174,7 @@ The [climate-indices](https://pypi.org/project/climate-indices/) software enable
 
 Precipitation unit must be written as `millimeters`, `milimeter`, `mm`, `inches`, `inch` or `in`.
 
-Data dimension and order must be written as  `lat`, `lon`, `time` or `time`, `lat`, `lon`.
+Data dimension and order must be written as  `lat`, `lon`, `time` (Windows machine required this order) or `time`, `lat`, `lon` (Works tested on Mac/Linux).
 
 * I have try to make script in Step 3 are following above specification. To make sure everything is correct, in your Terminal - navigate to your directory where you save java_cli_chirps_1months_1981_2020.nc file: `Input_nc`. Then type 
 
