@@ -2,7 +2,7 @@
 
 Satellite-based monitoring of dry and wet conditions using SPI
 
-The SPI analysis is following the training conducted in 28 Jan 2020 by [NASA ARSET](https://arset.gsfc.nasa.gov) on **Application of GPM IMERG Reanalysis for Assessing Extreme Dry and Wet Periods**. Link: https://arset.gsfc.nasa.gov/water/webinars/IMERG-2020
+The SPI analysis is following the training conducted in 28 Jan 2020 by [NASA ARSET](https://arset.gsfc.nasa.gov) on **Application of GPM IMERG Reanalysis for Assessing Extreme Dry and Wet Periods**. Link: https://appliedsciences.nasa.gov/join-mission/training/english/arset-applications-gpm-imerg-reanalysis-assessing-extreme-dry-and-wet
 
 The training session from NASA ARSET provided information on how to access and download IMERG data, and use it to calculate SPI on defined time scales. Information on SPI background, software requirement, data acquisition and SPI analysis using [IMERG](https://gpm.nasa.gov/category/keywords/imerg) data, please check the [notebook](/SPI_based_on_IMERG.ipynb)
 
