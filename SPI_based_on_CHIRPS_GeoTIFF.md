@@ -116,7 +116,7 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make it CHI
 
 	`gunzip *.gz`
 
-* Download the Java boundary shapefile http://on.istan.to/365PSyH. And save it in `Subset` directory then unzip it.
+* Download the Java boundary shapefile https://on.istan.to/3igJ48q. And save it in `Subset` directory then unzip it.
 
 * Still in your `Download` directory, Clip your area of interest using Java boundary and save it to `Input_TIF` directory. I will use gdalwarp command from GDAL to clip all GeoTIFF files in a folder.
 
@@ -126,7 +126,7 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make it CHI
 	
 	```for %i IN (*.tif) do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../Subset/java_bnd_chirps_subset.shp %i ../Input_TIF/java_%i```
 	
-	If you have limited data connection or lazy to download ~7GB and process ~27GB data, you can get pre-processed clipped data for Java covering Jan 1981 to Dec 2020, with file size ~6.8MB. Link: https://on.istan.to/3iLu68v
+	If you have limited data connection or lazy to download ~7GB and process ~27GB data, you can get pre-processed clipped data for Java covering Jan 1981 to Dec 2020, with file size ~6.8MB. Link: https://on.istan.to/3pia5cV
 
 * Download python script/notebook that I use to convert GeoTIFF in a folder to single netCDF, save it to `Script` folder.
 	
@@ -163,7 +163,7 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make it CHI
 		
 		Navigate to your notebook directory (where you put *.ipynb file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Script` folder. Move it to `Input_nc` folder. 
 
-* You also can get this data: java_cli_chirps_1months_1981_2020.nc via this link http://on.istan.to/3iRDl7e
+* You also can get this data: java_cli_chirps_1months_1981_2020.nc via this link https://on.istan.to/3uJk8ZC
 
 
 
@@ -235,9 +235,9 @@ Data dimension and order must be written as  `lat`, `lon`, `time` (Windows machi
 	
 	![SPI_based_on_CHIRPS_GeoTIFF_05](/Exercise/img/SPI_based_on_CHIRPS_GeoTIFF_05.png)
 
-	Output gamma and pearson file https://on.istan.to/2MhVnTP
+	Output gamma and pearson file https://on.istan.to/34ML5ks
 	
-	Fitting file http://on.istan.to/3c6ZLjq
+	Fitting file https://on.istan.to/3ithzZp
 
 
 
