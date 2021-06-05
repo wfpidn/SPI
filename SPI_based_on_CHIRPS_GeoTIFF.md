@@ -120,11 +120,11 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make it CHI
 
 * Still in your `Download` directory, Clip your area of interest using Java boundary and save it to `Input_TIF` directory. I will use gdalwarp command from GDAL to clip all GeoTIFF files in a folder.
 
-	```for i in `find *.tif`; do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../Subset/java_bnd_chirps_subset.shp $i ../Input_TIF/java_cli_$i; done```
+	```for i in `find *.tif`; do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../Subset/java_bnd_chirps_subset.shp -crop_to_cutline $i ../Input_TIF/java_cli_$i; done```
 	
 	if you are using Windows, you can follow below script.
 	
-	```for %i IN (*.tif) do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../Subset/java_bnd_chirps_subset.shp %i ../Input_TIF/java_%i```
+	```for %i IN (*.tif) do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../Subset/java_bnd_chirps_subset.shp -crop_to_cutline %i ../Input_TIF/java_%i```
 	
 	If you have limited data connection or lazy to download ~7GB and process ~27GB data, you can get pre-processed clipped data for Java covering Jan 1981 to Dec 2020, with file size ~6.8MB. Link: https://on.istan.to/3pia5cV
 
