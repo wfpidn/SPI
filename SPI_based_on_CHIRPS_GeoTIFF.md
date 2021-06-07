@@ -80,6 +80,10 @@ A new Anaconda [environment](https://conda.io/docs/using/envs.html) can be creat
 
 	`pip install climate-indices`
 
+* Install jupyter and other package using conda
+
+	`conda install -c conda-forge jupyter numpy datetime gdal netCDF4`
+	
 * Install Climate Data Operator ([CDO](https://code.mpimet.mpg.de/projects/cdo)) from Max-Planck-Institut für Meteorologie using conda
 
 	`conda install -c conda-forge cdo`
@@ -87,10 +91,6 @@ A new Anaconda [environment](https://conda.io/docs/using/envs.html) can be creat
 * Install netCDF Operator ([NCO](http://nco.sourceforge.net/)) using conda
 
 	`conda install -c conda-forge nco`
-
-* Install jupyter and other package using conda
-
-	`conda install -c conda-forge jupyter numpy datetime gdal netCDF4`
 
 
 
