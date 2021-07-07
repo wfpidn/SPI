@@ -1,0 +1,95 @@
+site_name: Standardized Precipitation Index
+site_description: Satellite-based monitoring of dry and wet conditions using Standardized Precipitation Index (SPI)
+site_url: "https://wfpidn.github.io/SPI"
+repo_url: https://github.com/wfpidn/SPI
+repo_name: wfpidn/SPI
+
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/library
+    favicon: assets/images/favicon.png
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.integrate
+
+plugins:
+  - search:
+      separator: '[\s\-\.]+'
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.critic
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - footnotes
+  - admonition
+  - pymdownx.tabbed
+  - pymdownx.keys
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tasklist:
+      clickable_checkbox: false
+      custom_checkbox: true
+  - def_list
+
+nav:
+    - About: index.md
+    - Background: background.md
+    - How-to?:
+      - 0. Working directory: directory.md
+      - 1. Software requirements: software.md
+      - 2. Configure the python environment: pyenv.md
+      - 3. Preparing input for SPI: rainfall.md
+      - 3.1 IMERG monthly netCDF: imergnc.md
+      - 3.2 CHIRPS monthly netCDF: chirpsnc.md
+      - 3.3. CHIRPS monthly GeoTIFF: chirpstif.md
+      - 4. Calculate SPI: spi.md
+      - 5. Update procedure: update.md
+      - 6. Visualize the result using Panoply: vizualisation.md
+      - 7. Convert the result to GeoTIFF: conversion.md
+    - Example: output.md
+    - References: references.md
