@@ -6,7 +6,7 @@ The training session from NASA ARSET provided information on how to access and d
 
 In this site, I would like to re-share on how to calculate SPI using NASA ARSET approach and provide alternative way using different data and format. This how-to guideline will use latest version of [Climate Indices in Python](https://github.com/monocongo/climate_indices) software. While NASA ARSET training still used the official release version from [U.S. Drought Portal](https://www.drought.gov/drought/python-climate-indices)
 
-On **How-to?** section, you will find step-by-step guideline to calculate SPI, and can try different (data source and format) approach below:
+On **[How-to?](../SPI/directory/)** section, you will find step-by-step guideline to calculate SPI, and can try different (data source and format) approach below:
 
 - SPI based on IMERG data in netCDF format (following NASA ARSET training but adjusted in some step)
 - SPI based on CHIRPS data in netCDF format

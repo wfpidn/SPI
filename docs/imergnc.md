@@ -1,16 +1,18 @@
 # 3.1. IMERG monthly in netCDF format
 
+Following the guideline from NASA ARSET, this section will explain on how to download IMERG monthly data in netCDF format and prepare it as input for SPI calculation.
+
 ## Download monthly IMERG data from GES DISC
 
 - Using a web browser, go to NASA Goddard Earth Sciences (GES) Data and Information Services Center (DISC): [https://disc.gsfc.nasa.gov/](https://disc.gsfc.nasa.gov/)
 
-- Type “IMERG” in the search bar and click on the search icon3
+- Type “IMERG” in the search bar and click on the search
 
 - Select IMERG Version 6 Level 3 data at “monthly” temporal resolution and click on the “Subset/Get Data” icon
 
 	![IMERG monthly](./img/imerg-data.png)
 
-- Leave the default date range since we want the entire time series
+- Current latest data is  up to Apr 2021, but for this guideline I will download for period Jun 2000 - Dec 2021
 
 - Under Spatial Subset enter `105.05, -8.8, 116.25, -5.05` This spatial subset is for Java island, Indonesia
 
@@ -54,10 +56,10 @@ Once downloaded, unzip `IMERG_originalfiles.zip`
 
 - I need to rename it all the file into friendly filename like this `3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4`
 
-- If you follow the download process, you may create a duplicate folder and it's contents for `IMERG_originalfiles` and rename it to `IMERG_mmhr` (just in case something happen to you downloaded files). But if you not follow the download process but downloaded `IMERG_originalfiles.zip` folder, you are good.
+- If you follow the download process, you may create a duplicate for contents in `IMERG_originalfiles` to `IMERG_mmhr` (just in case something happen to your downloaded files). But if you are not follow the download process but downloaded `IMERG_originalfiles.zip` folder, you are good.
 
 - I will use [regular expression](https://en.wikipedia.org/wiki/Regular_expression) and remove the first `178` characters in the filename (I will remove text `HTTP_services.cgi?FILENAME=%2Fdata%2FGPM_L3%2FGPM_3IMERGM.06%2F2000%2F3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5&FORMAT=bmM0Lw&BBOX=-8.8,105.05,-5.05,116.25&LABEL=` and leaving `3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4`). 
-Using `rename` command, make sure you are in newly duplicate folder `IMERG_mmhr` directory in your terminal, type below code: 
+Using `rename` command, make sure you are navigate to `IMERG_mmhr` directory in your terminal, type below code: 
 
 ``` bash
 rename 's/.{178}//g' *.nc4`
@@ -202,9 +204,9 @@ And the variables for precipitation is `time`,`lat`,`lon`, it means the result i
     ncks --fix_rec_dmn time IMERG_concat_ncpdq0.nc4 -o outfunlim.nc4 ; mv outunlim.nc4 IMERG_concat_ncpdq0.nc4
     ```
     
-    If you don't come accross the problem, lat or lon dimension becomes UNLIMITED, then skip above process and go directly to step below.
+    If you don't come accross the problem, `lat` or `lon` dimension becomes `UNLIMITED`, then skip above process and go directly to step below.
 
-SPI code does not recognized unit `mm/hr` or `mm/month`, we need to edit into `mm`. To edit the unit attribute names, we will use `ncatted` command, follow below code.
+SPI code does not recognized unit `mm/hr` or `mm/month`, I need to edit into `mm`. To edit the unit attribute names, I will use `ncatted` command, follow below code.
 
 ``` bash
 ncatted -a units,precipitation,modify,c,'mm' IMERG_concat_ncpdq0.nc4 IMERG_concat_ncpdq1.nc4
@@ -222,7 +224,7 @@ ncdump -h IMERG_concat_ncpdq1.nc4
 
 And the units already in `mm`
 
-Once this has completed the dataset can be used as input to this package for computing SPI. From above picture, some of the precipitation attribute are still wrong: `DimensionNames` and `Units`. We can leave it as is, SPI code will only read `units` and variables `precipitation(time,lat,lon)`
+Once this has completed, the dataset can be used as input to this package for computing SPI. From above picture, some of the precipitation attribute are still wrong: `DimensionNames` and `Units`. I can leave it as is, SPI code will only read `units` and variables `precipitation(time,lat,lon)`
 
 As the input data preparation is completed, move the file `IMERG_concat_ncpdq1.nc4` to main folder `Input_nc` and rename into `java_cli_imerg_1months_2000_2020.nc`
 

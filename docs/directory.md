@@ -1,15 +1,17 @@
 # 0. Working Directory
 
-For this tutorial, I am working at `/Users/bennyistanto/Temp/xxx/SPI/Java` (applied to Mac/Linux machine) or `Z:/Temp/xxx/SPI/Java` (applied to Windows machine) directory. I have some folder inside this directory:
+For this tutorial, I am working on these folder `/Users/bennyistanto/Temp/xxx/SPI/Java` (applied to Mac/Linux machine) or `Z:/Temp/xxx/SPI/Java` (applied to Windows machine) directory. I have some folder inside this directory:
 
 1. `Downloads`
 	1. `IMERG`
-		1. IMERG_mmhr
-		2. IMERG_mmmonth
-		3. IMERG_originalfiles
+		1. `IMERG_mmhr`
+		2. `IMERG_mmmonth`
+		3. `IMERG_originalfiles`
 		
 	2. `CHIRPS`
-	
+		1. `netCDF`
+		2. `GeoTIFF`
+
 	Place to put downloaded IMERG or CHIRPS data
 
 2. `Fitting`
@@ -44,7 +46,7 @@ For this tutorial, I am working at `/Users/bennyistanto/Temp/xxx/SPI/Java` (appl
 
 	Place to put shapefile for clipping area of interest
 
-Feel free to use your own preferences for this setting.
+Feel free to use your own preferences for this setting/folder arrangements.
 
 
 **Notes:**

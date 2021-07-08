@@ -5,7 +5,7 @@ What if the new data is coming (Jan 2021)? Should I re-run again for the whole p
 
 So far, updating the SPI process is easy if I used CHIRPS in GeoTIFF format. Below are some reason:
 
-- Downloading new CHIRPS data in [netCDF](https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/netcdf/) is painful, because we I to download whole package data (6.4 GB and start from Jan 1981 to date) eventhough I only need the latest month.
+- Downloading new CHIRPS data in [netCDF](https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/netcdf/) is painful, because I need to download whole package data (6.4 GB and start from Jan 1981 to date) eventhough I only need the latest month.
 
 - CHIRPS data in [GeoTIFF](https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/tifs/) provides 1 month 1 GeoTIFF file, only take what you need!
 

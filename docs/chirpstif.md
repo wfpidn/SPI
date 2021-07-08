@@ -1,6 +1,6 @@
 # 3.3. CHIRPS monthly in GeoTIFF format
 
-For this step-by-step guideline, I will use CHIRPS [monthly data in GeoTIFF](https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/tifs/) format and the case study is Java island - Indonesia.
+This section will explain on how to download CHIRPS [monthly data in GeoTIFF](https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/tifs/) format and prepare it as input for SPI calculation.
 
 Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make CHIRPS the highest gridded rainfall data, and long-term historical data from 1981 – now.
 
@@ -9,7 +9,7 @@ Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make CHIRPS
 
 ## Download CHIRPS data
 
-- Navigate to `Downloads` folder in the working directory. Download using `wget` all CHIRPS monthly data in GeoTIFF format from Jan 1981 to Dec 2020 (this is lot of data +-7GB zipped files, and become 27GB after extraction, please make sure you have bandwidth and unlimited data package):
+- Navigate to `Downloads/GeoTIFF` folder in the working directory. Download using `wget` all CHIRPS monthly data in GeoTIFF format from Jan 1981 to Dec 2020 (this is lot of data +-7GB zipped files, and become 27GB after extraction, please make sure you have bandwidth and unlimited data package):
 
 ```bash
 export URL='https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/tifs/'; curl "$URL" | grep -E 'a href=' | perl -pe 's|.*href="(.*?)".*|\1|' | { while read -r f; do wget "$URL"/"$f"; done }
@@ -22,20 +22,20 @@ gunzip *.gz
 ```
 
 
-## Clip data using area of interest
+## Clip data using a shapefile based on area of interest
 
-- Download the Java boundary shapefile [https://on.istan.to/3igJ48q](https://on.istan.to/3igJ48q). And save it in Subset directory then unzip it.
+- Download the Java boundary shapefile [https://github.com/wfpidn/SPI/blob/master/Data/Subset/java_bnd_chirps_subset.zip](https://github.com/wfpidn/SPI/blob/master/Data/Subset/java_bnd_chirps_subset.zip). And save it in Subset directory then unzip it.
 
 !!! info
     You can use your own boundary in shapefile and use it to clip the rainfall raster data based on your preferred area of interest.
 
-- Still in your `Downloads` directory, Clip your area of interest using Java boundary and save it to `Input_TIF` directory. I will use `gdalwarp` command from GDAL to clip all GeoTIFF files in a folder.
+- Still in your `GeoTIFF` directory, Clip your area of interest using Java boundary and save it to `Input_TIF` directory. I will use `gdalwarp` command from GDAL to clip all GeoTIFF files in a folder.
 
 ```bash
-for i in `find *.tif`; do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../Subset/java_bnd_chirps_subset.shp -crop_to_cutline $i ../Input_TIF/java_cli_$i; done
+for i in `find *.tif`; do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../../../Subset/java_bnd_chirps_subset.shp -crop_to_cutline $i ../../../Input_TIF/java_cli_$i; done
 ```
 
-If you have limited data connection or lazy to download +-7GB and process +-27GB data, you can get pre-processed clipped data for Java covering Jan 1981 to Dec 2020, with file size +-6.8MB. Link: [https://on.istan.to/3pia5cV](https://on.istan.to/3pia5cV)
+If you have limited data connection or lazy to download +-7GB and process +-27GB data, you can get pre-processed clipped data for Java covering Jan 1981 to Dec 2020, with file size +-6.8MB. Link: [https://github.com/wfpidn/SPI/blob/master/Data/Input_TIF](https://github.com/wfpidn/SPI/blob/master/Data/Input_TIF)
 
 
 ## Convert GeoTIFFs to single netCDF
@@ -200,14 +200,32 @@ You MUST adjust the folder location (replace `/path/to/directory/` with yours, e
 	
 	- Using Python in Terminal, navigate to your `Script` directory, type `python tiff2nc.py`
 
-	![SPI_based_on_CHIRPS_GeoTIFF_01](./img/SPI_based_on_CHIRPS_GeoTIFF_01.png)
+	   ![SPI_based_on_CHIRPS_GeoTIFF_01](./img/SPI_based_on_CHIRPS_GeoTIFF_01.png)
 		
-	Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Input_TIF` folder. Move it to `Input_nc` folder.
+	   Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Input_TIF` folder. Move it to `Input_nc` folder.
 
-	Using Jupyter, make sure you still inside conda `gis` environment, type in Terminal `jupyter notebook`
+	   >Using Jupyter, make sure you still inside conda `gis` environment
+       >
+       >Access this `*.ipynb` file inside `Script` folder. Move it to `Input_TIF` folder. 
+       >
+       >Navigate your Terminal to `Input_TIF` then type `jupyter notebook`
+       > 
+	   >![SPI_based_on_CHIRPS_GeoTIFF_02](./img/SPI_based_on_CHIRPS_GeoTIFF_02.png)
+	   >	
+	   >Navigate to your notebook directory (where you put `*.ipynb` file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. 
+       >
 
-	![SPI_based_on_CHIRPS_GeoTIFF_02](./img/SPI_based_on_CHIRPS_GeoTIFF_02.png)
-		
-	Navigate to your notebook directory (where you put `*.ipynb` file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Script` folder. Move it to `Input_nc` folder. 
+- As the input data preparation is completed, move the file `java_cli_chirps_1months_1981_2020.nc` to main folder `Input_nc`
 
-- You also can get this data: `java_cli_chirps_1months_1981_2020.nc` via this link [https://on.istan.to/3uJk8ZC](https://on.istan.to/3uJk8ZC)
+``` bash
+mv java_cli_chirps_1months_1981_2020.nc ../../../Input_nc/java_cli_imerg_1months_1981_2020.nc
+```
+
+![CHIRPS ncfinal](./img/chirps-ncfinal.png)
+
+Make sure the file `java_cli_chirps_1months_1981_2020.nc` is available at `Input_nc` folder
+
+![IMERG inputnc](./img/imerg-inputnc.png)
+
+
+- You also can get this data: `java_cli_chirps_1months_1981_2020.nc` via this link [https://github.com/wfpidn/SPI/blob/master/Data/Input_nc/java_cli_chirps_1months_1981_2020.nc](https://github.com/wfpidn/SPI/blob/master/Data/Input_nc/java_cli_chirps_1months_1981_2020.nc)
