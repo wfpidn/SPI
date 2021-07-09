@@ -1,0 +1,1 @@
+https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/netcdf/
