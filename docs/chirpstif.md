@@ -1,25 +1,27 @@
-# 3.3. CHIRPS monthly in GeoTIFF format
+# 3.2. CHIRPS monthly in GeoTIFF format
 
 This section will explain on how to download CHIRPS [monthly data in GeoTIFF](https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/tifs/) format and prepare it as input for SPI calculation.
-
-Why CHIRPS? It is produced at 0.05 x 0.05 degree spatial resolution, make CHIRPS the highest gridded rainfall data, and long-term historical data from 1981 – now.
 
 - Make sure you still inside conda `gis` environment
 
 
 ## Download CHIRPS data
 
-- Navigate to `Downloads/GeoTIFF` folder in the working directory. Download using `wget` all CHIRPS monthly data in GeoTIFF format from Jan 1981 to Dec 2020 (this is lot of data +-7GB zipped files, and become 27GB after extraction, please make sure you have bandwidth and unlimited data package):
+- Navigate to `Downloads/CHIRPS/GeoTIFF` folder in the working directory. Download using `wget` all CHIRPS monthly data in GeoTIFF format from Jan 1981 to Dec 2020 (this is lot of data +-7GB zipped files, and become 27GB after extraction, please make sure you have bandwidth and unlimited data package). Paste and Enter below script in your Terminal.
 
 ```bash
 export URL='https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/tifs/'; curl "$URL" | grep -E 'a href=' | perl -pe 's|.*href="(.*?)".*|\1|' | { while read -r f; do wget "$URL"/"$f"; done }
 ```
+
+![CHIRPS downloadtif](./img/chirps-downloadtif.png)
 
 - Gunzip all the downloaded files
 
 ```bash
 gunzip *.gz
 ```
+
+![CHIRPS gunzip](./img/chirps-gunzip.png)
 
 
 ## Clip data using a shapefile based on area of interest
@@ -32,18 +34,22 @@ gunzip *.gz
 - Still in your `GeoTIFF` directory, Clip your area of interest using Java boundary and save it to `Input_TIF` directory. I will use `gdalwarp` command from GDAL to clip all GeoTIFF files in a folder.
 
 ```bash
-for i in `find *.tif`; do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../../../Subset/java_bnd_chirps_subset.shp -crop_to_cutline $i ../../../Input_TIF/java_cli_$i; done
+for i in `find *.tif`; do gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata NoData -dstnodata -9999 -cutline ../../../Subset/java_bnd_chirps_subset.shp -crop_to_cutline $i ../../../Input_TIF/java_$i; done
 ```
+
+![CHIRPS clip subset](./img/chirps-clipsubset.png)
 
 If you have limited data connection or lazy to download +-7GB and process +-27GB data, you can get pre-processed clipped data for Java covering Jan 1981 to Dec 2020, with file size +-6.8MB. Link: [https://github.com/wfpidn/SPI/blob/master/Data/Input_TIF](https://github.com/wfpidn/SPI/blob/master/Data/Input_TIF)
 
 
 ## Convert GeoTIFFs to single netCDF
 
-- Download python script/notebook that I use to convert GeoTIFF in a folder to single netCDF, save it to Script folder.
+- Download python script/notebook that I use to convert GeoTIFF in a folder to single netCDF, save it to `Script` folder.
 	
-	- Jupyter [notebook](https://github.com/wfpidn/VAMscript/blob/master/notebook/CHIRPS-GeoTIFF_to_netCDF_Java.ipynb)
-	- Python [script](https://gist.github.com/bennyistanto/ff16dc08cc06b5a13740323db41dc8f3)
+	- Jupyter [notebook](https://github.com/wfpidn/SPI/blob/master/Data/Script/CHIRPS_GeoTIFF_to_single_netCDF.ipynb)
+	- Python [script](https://github.com/wfpidn/SPI/blob/master/Data/Script/tiff2nc.py)
+
+Below is the script
 
 ``` python
 #!/usr/bin/env python
@@ -185,35 +191,38 @@ nco.close()
 
 You MUST adjust the folder location (replace `/path/to/directory/` with yours, example: `/Users/bennyistanto/Temp/CHIRPS/SPI/Input_TIF/java_cli_chirps-v2.0.1981.01.1.tif`) in line 31 and 114.
 
->If you are using other data source (I assume all the data in WGS84), you need to adjust few code in:
->
->- Line 31: folder location.
->- Line 40: start of the date
->- Line 44: output name
->- Line 53: date attribute
->- Line 85-88: bounding box
->- Line 110: output filename structure
->- Line 114: folder location
->- Line 120-122: date character location in a filename
+!!! warning
+    If you are using other data source (I assume all the data in WGS84), you need to adjust few code in:
+    
+    Line 31: folder location</br>
+    Line 40: start of the date</br>
+    Line 44: output name</br>
+    Line 53: date attribute</br>
+    Line 85-88: bounding box</br>
+    Line 110: output filename structure</br>
+    Line 114: folder location</br>
+    Line 120-122: date character location in a filename</br>
 
-- After everything is set, then you can execute the translation process (choose one or you can try both)
+
+- After everything is set, then you can execute the translation process (choose one or you can try both for learning)
 	
 	- Using Python in Terminal, navigate to your `Script` directory, type `python tiff2nc.py`
 
-	   ![SPI_based_on_CHIRPS_GeoTIFF_01](./img/SPI_based_on_CHIRPS_GeoTIFF_01.png)
+	   ![CHIRPS python](./img/chirps-python.png)
 		
 	   Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. You will find this file inside `Input_TIF` folder. Move it to `Input_nc` folder.
 
-	   >Using Jupyter, make sure you still inside conda `gis` environment
-       >
-       >Access this `*.ipynb` file inside `Script` folder. Move it to `Input_TIF` folder. 
-       >
-       >Navigate your Terminal to `Input_TIF` then type `jupyter notebook`
-       > 
-	   >![SPI_based_on_CHIRPS_GeoTIFF_02](./img/SPI_based_on_CHIRPS_GeoTIFF_02.png)
-	   >	
-	   >Navigate to your notebook directory (where you put `*.ipynb` file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. 
-       >
+	- Using Jupyter, make sure you still inside conda `gis` environment.
+
+    Access this `*.ipynb` file inside `Script` folder. Move it to `Input_TIF` folder. 
+
+       Navigate your Terminal to `Input_TIF` then type `jupyter notebook`
+
+       ![SPI_based_on_CHIRPS_GeoTIFF_02](./img/chirps-jupyter.png)
+
+       Navigate to your notebook directory (where you put `*.ipynb` file), run Cell by Cell until completed. Wait for a few moments, you will get the output `java_cli_chirps_1months_1981_2020.nc`. 
+       
+       ![CHIRPS clip subset](./img/chirps-notebook.png)
 
 - As the input data preparation is completed, move the file `java_cli_chirps_1months_1981_2020.nc` to main folder `Input_nc`
 
@@ -225,7 +234,7 @@ mv java_cli_chirps_1months_1981_2020.nc ../../../Input_nc/java_cli_imerg_1months
 
 Make sure the file `java_cli_chirps_1months_1981_2020.nc` is available at `Input_nc` folder
 
-![IMERG inputnc](./img/imerg-inputnc.png)
+![CHIRPS inputnc](./img/chirps-inputnc.png)
 
 
 - You also can get this data: `java_cli_chirps_1months_1981_2020.nc` via this link [https://github.com/wfpidn/SPI/blob/master/Data/Input_nc/java_cli_chirps_1months_1981_2020.nc](https://github.com/wfpidn/SPI/blob/master/Data/Input_nc/java_cli_chirps_1months_1981_2020.nc)

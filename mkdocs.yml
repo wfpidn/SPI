@@ -85,8 +85,8 @@ nav:
       - 2. Configure the python environment: pyenv.md
       - 3. Preparing input for SPI: rainfall.md
       - 3.1 IMERG monthly netCDF: imergnc.md
-      - 3.2 CHIRPS monthly netCDF: chirpsnc.md
-      - 3.3. CHIRPS monthly GeoTIFF: chirpstif.md
+      - 3.2. CHIRPS monthly GeoTIFF: chirpstif.md
+      - 3.3 CHIRPS monthly netCDF: chirpsnc.md
       - 4. Calculate SPI: spi.md
       - 5. Update procedure: update.md
       - 6. Visualize the result using Panoply: vizualisation.md

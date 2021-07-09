@@ -9,8 +9,8 @@ In this site, I would like to re-share on how to calculate SPI using NASA ARSET 
 On **[How-to?](../SPI/directory/)** section, you will find step-by-step guideline to calculate SPI, and can try different (data source and format) approach below:
 
 - SPI based on IMERG data in netCDF format (following NASA ARSET training but adjusted in some step)
-- SPI based on CHIRPS data in netCDF format
 - SPI based on CHIRPS data GeoTIFF  format
+- SPI based on CHIRPS data in netCDF format
 
 ![SPI3](./img/CHIRPS_SPI3.png)
 

@@ -51,4 +51,4 @@ Feel free to use your own preferences for this setting/folder arrangements.
 
 **Notes:**
 
-xxx = IMERG or CHIRPS (depend on the data used in tutorial)
+`xxx` = `IMERG` or `CHIRPS` (depend on the data used in tutorial)

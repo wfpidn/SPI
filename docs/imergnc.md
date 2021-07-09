@@ -42,7 +42,7 @@ wget -c -i subset_GPM_3IMERGM_06_20200703_065511.txt`
 
 ![Wget](./img/wget.png)
 
-If you are lazy to follow the process of downloading data, for convenience these data are made available on via this link: [https://github.com/wfpidn/SPI/blob/master/Data/IMERG_originalfiles.zip](https://github.com/wfpidn/SPI/blob/master/Data/IMERG_originalfiles.zip)
+If you are lazy to follow the process of downloading data, for convenience these data are made available on via this link: [https://github.com/wfpidn/SPI/blob/master/Data/Downloads/IMERG/IMERG_originalfiles.zip](https://github.com/wfpidn/SPI/blob/master/Data/Downloads/IMERG/IMERG_originalfiles.zip)
 
 Once downloaded, unzip `IMERG_originalfiles.zip`
 

@@ -1,16 +1,19 @@
 # 4. Calculate SPI
 
-The [climate-indices](https://pypi.org/project/climate-indices/) python package enables the user to calculate SPI using any gridded netCDF dataset, However, there are certain specifications for input files that vary based on input type.
-
-Precipitation unit must be written as `millimeters`, `milimeter`, `mm`, `inches`, `inch` or `in`.
-
-Data dimension and order must be written as `lat`, `lon`, `time` (Windows machine required this order) or `time`, `lat`, `lon` (Works tested on Mac/Linux).
+Let's start the calculation!
 
 - Deactivate an active environment `gis` then activate environment `climate_indices` to start working on SPI calculation.
 
 ```bash
 conda deactivate && conda activate climate_indices
 ```
+
+!!! note
+    Please make sure the input file are following input requirements for SPI
+
+    - Variable name on precipitation `--var_name_precip`, usually IMERG data use `precipitation` as name while CHIRPS using `precip`. To make sure, check using command `ncdump -h file.nc` then adjust it in SPI script if needed.
+    - Precipitation unit must be written as `millimeters`, `milimeter`, `mm`, `inches`, `inch` or `in`.
+    - Data dimension and order must be written as `lat`, `lon`, `time` (Windows machine required this order) or `time`, `lat`, `lon` (Works tested on Mac/Linux and Linux running on WSL).
 
 ## IMERG data
 
@@ -154,6 +157,6 @@ For small area of interest, the calculation will fast and don’t take much time
 	
 	![SPI_based_on_CHIRPS_GeoTIFF_05](./img/SPI_based_on_CHIRPS_GeoTIFF_05.png)
 
-	Output gamma and pearson file [https://on.istan.to/34ML5ks](https://on.istan.to/34ML5ks)
+	Output gamma and pearson file [https://github.com/wfpidn/SPI/blob/master/Data/Output_nc](https://github.com/wfpidn/SPI/blob/master/Data/Output_nc)
 
-	Fitting file [https://on.istan.to/3ithzZp](https://on.istan.to/3ithzZp)
+	Fitting file [https://github.com/wfpidn/SPI/blob/master/Data/Fitting](https://github.com/wfpidn/SPI/blob/master/Data/Fitting)
