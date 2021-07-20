@@ -30,7 +30,6 @@ theme:
     text: Roboto
     code: Roboto Mono
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -96,5 +95,6 @@ nav:
       - 5. Update procedure: update.md
       - 6. Visualize the result using Panoply: vizualisation.md
       - 7. Convert the result to GeoTIFF: conversion.md
-    - Example: output.md
-    - References: references.md
+    - Example and References:
+      - Example: output.md
+      - References: references.md
