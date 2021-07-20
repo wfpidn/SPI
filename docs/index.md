@@ -35,8 +35,6 @@ Vulnerability Analysis and Mapping Unit<br>
 UN World Food Programme<br>
 Jakarta, Indonesia<br>
 
-T. +62-21-5709004<br>
-F. +62-21-5709001<br>
 E. [benny.istanto@wfp.org](mailto:benny.istanto@wfp.org)<br>
 
 ![VAM](./img/WFP_newVAM_Logo.png)
