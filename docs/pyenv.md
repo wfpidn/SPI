@@ -4,6 +4,10 @@ The code for calculating SPI is written in Python 3. It is recommended to use ei
 
 A new Anaconda [environment](https://conda.io/docs/using/envs.html) can be created using the [conda](https://conda.io/docs/) environment management system that comes packaged with Anaconda. In the following examples, I’ll use an environment named `climate_indices` (any environment name can be used instead of `climate_indices`) which will be created and populated with all required dependencies through the use of the provided setup.py file.
 
+!!! note
+	This step must **only be done the first time**. Once the environment has been created there is no need to do it again.
+
+
 - First, open your Terminal (in your macOS/Linux and Ubuntu Linux on WSL), create the Python environment with `python3.7` as default:
 
 ```bash
