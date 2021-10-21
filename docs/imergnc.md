@@ -201,7 +201,7 @@ And the variables for precipitation is `time`,`lat`,`lon`, it means the result i
     And to make `UNLIMITED` the `time` dimension again using `ncks` command below:
     
     ``` bash
-    ncks --fix_rec_dmn time IMERG_concat_ncpdq0.nc4 -o outfunlim.nc4 ; mv outunlim.nc4 IMERG_concat_ncpdq0.nc4
+    ncks --mk_rec_dmn time IMERG_concat_ncpdq0.nc4 -o outfunlim.nc4 ; mv outunlim.nc4 IMERG_concat_ncpdq0.nc4
     ```
     
     If you don't come accross the problem, `lat` or `lon` dimension becomes `UNLIMITED`, then skip above process and go directly to step below.
