@@ -1,0 +1,875 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Satellite-based monitoring of dry and wet conditions using Standardized Precipitation Index (SPI)">
+      
+      
+      
+      
+        <link rel="canonical" href="https://wfpidn.github.io/SPI/imergnc/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+    
+    
+      
+        <title>3.1 IMERG monthly netCDF - Standardized Precipitation Index</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+  
+
+
+  
+
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-R04LC6RC6R"),document.addEventListener("DOMContentLoaded",function(){"undefined"!=typeof location$&&location$.subscribe(function(t){gtag("config","G-R04LC6RC6R",{page_path:t.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R04LC6RC6R"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#31-imerg-monthly-in-netcdf-format" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Standardized Precipitation Index" class="md-header__button md-logo" aria-label="Standardized Precipitation Index" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Standardized Precipitation Index
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.1 IMERG monthly netCDF
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/wfpidn/SPI/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    wfpidn/SPI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Standardized Precipitation Index" class="md-nav__button md-logo" aria-label="Standardized Precipitation Index" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Standardized Precipitation Index
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/wfpidn/SPI/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    wfpidn/SPI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background/" class="md-nav__link">
+        Background
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          How-to?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How-to?" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How-to?
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directory/" class="md-nav__link">
+        0. Working directory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software/" class="md-nav__link">
+        1. Software requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pyenv/" class="md-nav__link">
+        2. Configure the python environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rainfall/" class="md-nav__link">
+        3. Preparing input for SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.1 IMERG monthly netCDF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        3.1 IMERG monthly netCDF
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-monthly-imerg-data-from-ges-disc" class="md-nav__link">
+    Download monthly IMERG data from GES DISC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rename-all-the-data-into-friendly-filename" class="md-nav__link">
+    Rename all the data into friendly filename
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-unit-from-mmhr-to-mmmonth" class="md-nav__link">
+    Convert unit from mm/hr to mm/month
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-single-netcdf-file" class="md-nav__link">
+    Create single netCDF file
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chirpstif/" class="md-nav__link">
+        3.2. CHIRPS monthly GeoTIFF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chirpsnc/" class="md-nav__link">
+        3.3 CHIRPS monthly netCDF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spi/" class="md-nav__link">
+        4. Calculate SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update/" class="md-nav__link">
+        5. Update procedure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vizualisation/" class="md-nav__link">
+        6. Visualize the result using Panoply
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conversion/" class="md-nav__link">
+        7. Convert the result to GeoTIFF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Example and References
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Example and References" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Example and References
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/" class="md-nav__link">
+        Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/wfpidn/SPI/edit/master/docs/imergnc.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="31-imerg-monthly-in-netcdf-format">3.1. IMERG monthly in netCDF format</h1>
+<p>Following the guideline from NASA ARSET, this section will explain on how to download IMERG monthly data in netCDF format and prepare it as input for SPI calculation.</p>
+<h2 id="download-monthly-imerg-data-from-ges-disc">Download monthly IMERG data from GES DISC</h2>
+<ul>
+<li>
+<p>Using a web browser, go to NASA Goddard Earth Sciences (GES) Data and Information Services Center (DISC): <a href="https://disc.gsfc.nasa.gov/">https://disc.gsfc.nasa.gov/</a></p>
+</li>
+<li>
+<p>Type “IMERG” in the search bar and click on the search</p>
+</li>
+<li>
+<p>Select IMERG Version 6 Level 3 data at “monthly” temporal resolution and click on the “Subset/Get Data” icon</p>
+<p><img alt="IMERG monthly" src="../img/imerg-data.png" /></p>
+</li>
+<li>
+<p>Current latest data is  up to Apr 2021, but for this guideline I will download for period Jun 2000 - Dec 2021</p>
+</li>
+<li>
+<p>Under Spatial Subset enter <code>105.05, -8.8, 116.25, -5.05</code> This spatial subset is for Java island, Indonesia</p>
+</li>
+<li>
+<p>Under Variables select only <code>precipitation</code></p>
+</li>
+<li>
+<p>Leave the default parameters under Grid</p>
+</li>
+<li>
+<p>Under File Format select "netCDF"</p>
+</li>
+<li>
+<p>Click Get Data</p>
+<p><img alt="Download options" src="../img/download-options.png" /></p>
+</li>
+<li>
+<p>Data links windows will popup and you may click "<strong>Download links list</strong>"</p>
+<p><img alt="Data Links" src="../img/data-links.png" /></p>
+</li>
+<li>
+<p>You will get a txt file with similar filename like this one <code>subset_GPM_3IMERGM_06_20210707_044656.txt</code></p>
+</li>
+<li>
+<p>Move this file into your working directory (in this case I have folder <code>/Download/IMERG/IMERG_originalfiles</code> to save the txt file)</p>
+</li>
+<li>
+<p>Navigate your terminal to folder <code>/Downloads/IMERG/IMERG_originalfiles</code> and type this code to download the data:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>wget -c -i subset_GPM_3IMERGM_06_20200703_065511.txt<span class="sb">`</span>
+</code></pre></div>
+<p><img alt="Wget" src="../img/wget.png" /></p>
+<p>If you are lazy to follow the process of downloading data, for convenience these data are made available on via this link: <a href="https://github.com/wfpidn/SPI/blob/master/Data/Downloads/IMERG/IMERG_originalfiles.zip">https://github.com/wfpidn/SPI/blob/master/Data/Downloads/IMERG/IMERG_originalfiles.zip</a></p>
+<p>Once downloaded, unzip <code>IMERG_originalfiles.zip</code></p>
+<h2 id="rename-all-the-data-into-friendly-filename">Rename all the data into friendly filename</h2>
+<ul>
+<li>
+<p>If you check the data in folder <code>IMERG_originalfiles</code>, you will find the data with filename something like <code>HTTP_services.cgi?FILENAME=%2Fdata%2FGPM_L3%2FGPM_3IMERGM.06%2F2000%2F3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5&amp;FORMAT=bmM0Lw&amp;BBOX=-8.8,105.05,-5.05,116.25&amp;LABEL=3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4</code></p>
+<p><img alt="Original Filenames" src="../img/orig-filenames.png" /></p>
+</li>
+<li>
+<p>I need to rename it all the file into friendly filename like this <code>3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4</code></p>
+</li>
+<li>
+<p>If you follow the download process, you may create a duplicate for contents in <code>IMERG_originalfiles</code> to <code>IMERG_mmhr</code> (just in case something happen to your downloaded files). But if you are not follow the download process but downloaded <code>IMERG_originalfiles.zip</code> folder, you are good.</p>
+</li>
+<li>
+<p>I will use <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a> and remove the first <code>178</code> characters in the filename (I will remove text <code>HTTP_services.cgi?FILENAME=%2Fdata%2FGPM_L3%2FGPM_3IMERGM.06%2F2000%2F3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5&amp;FORMAT=bmM0Lw&amp;BBOX=-8.8,105.05,-5.05,116.25&amp;LABEL=</code> and leaving <code>3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4</code>). 
+Using <code>rename</code> command, make sure you are navigate to <code>IMERG_mmhr</code> directory in your terminal, type below code: </p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>rename <span class="s1">&#39;s/.{178}//g&#39;</span> *.nc4<span class="sb">`</span>
+</code></pre></div>
+<p><img alt="Rename" src="../img/rename.png" /></p>
+<p>And below is the result!</p>
+<p><img alt="Renamed Filenames" src="../img/rename-filenames.png" /></p>
+<h2 id="convert-unit-from-mmhr-to-mmmonth">Convert unit from mm/hr to mm/month</h2>
+<p>Make sure you are inside <code>gis</code> environment and <code>IMERG_mmhr</code> folder, I will use NCO to pre-process the data. </p>
+<ul>
+<li>Let's read header contents of a netCDF file in <code>IMERG_mmhr</code> folder. I will use this data <code>3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4</code> as example. Type and execute below code:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncdump -h 3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4
+</code></pre></div>
+<p>You will get information (dimension, variables and global attribute) about the data.</p>
+<p><img alt="IMERG HH" src="../img/ncdump-imerghh.png" /></p>
+<p>As you can see above picture, the original downloaded files unit from GPM IMERG is in <code>mm/hr</code>, while to calculate monthly SPI, the data must be in <code>mm/month</code>. I need to do a conversion process using <code>ncap2</code> (arithmatic operator for netCDF files) command by multiplying number of day in month with <code>24hour</code>. Example:</p>
+<ul>
+<li>Rainfall value in Month: <code>JAN</code>, <code>MAR</code>, <code>MAY</code>, <code>JUL</code>, <code>AUG</code>, <code>OCT</code>, <code>DEC</code> which has <code>31</code> days will multiply with <code>744</code> to get <code>mm/month</code></li>
+<li>Rainfall value in Month: <code>APR</code>, <code>JUN</code>, <code>SEP</code>, <code>NOV</code> which has <code>30</code> days will multiply with <code>720</code> to get <code>mm/month</code></li>
+<li>Rainfall value in Month: <code>FEB</code> in a leap year which has 29 days will multiply with <code>696</code> to get <code>mm/month</code></li>
+<li>Rainfall value in Month: <code>FEB</code> in a normal year which has 28 days will multiply with <code>672</code> to get <code>mm/month</code></li>
+</ul>
+<p>To do the calculation, I will use below script to help generate line of codes for converting value of each data from <code>mm/hr</code> to <code>mm/month</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">while</span> <span class="nb">read</span> -r _file<span class="p">;</span> <span class="k">do</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="nv">file</span><span class="o">=</span><span class="k">$(</span>basename -- <span class="s2">&quot;</span><span class="nv">$_file</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nv">yearmonth</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*\.3IMERG\.([0-9]{6})[0-9]{2}-.*/\1/&#39;</span><span class="k">)</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nv">mult</span><span class="o">=</span><span class="k">$(</span>python - <span class="s2">&quot;</span><span class="nv">$yearmonth</span><span class="s2">&quot;</span> <span class="s">&lt;&lt;EOF</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="s">import sys, calendar</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="s">ym = sys.argv[1]</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="s">print(calendar.monthrange(int(ym[:4]), int(ym[4:]))[1] * 24)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="s">EOF</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">)</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="nb">echo</span> ncap2 -s <span class="s1">&#39;precipitation=&#39;</span><span class="s2">&quot;</span><span class="nv">$mult</span><span class="s2">&quot;</span><span class="s1">&#39;*precipitation&#39;</span> <span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span> ../IMERG_mmmonth/<span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="k">done</span> &lt; &lt;<span class="o">(</span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.nc4&quot;</span><span class="o">)</span> &gt; script.sh
+</code></pre></div>
+<p>Paste above code in your Terminal and Enter. You will get a file named <code>script.sh</code> as the result.</p>
+<p><img alt="IMERG Gen Script" src="../img/imerg-generatescript.png" /></p>
+<p>Then execute below</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sh script.sh
+</code></pre></div>
+<p><img alt="IMERG Script" src="../img/imerg-scriptsh.png" /></p>
+<p>All file inside <code>IMERG_mmmonth</code> will have rainfall which show the value in <code>mm/month</code>. Let's check file <code>3B-MO.MS.MRG.3IMERG.20000601-S000000-E235959.06.V06B.HDF5.nc4</code> in folder <code>IMERG_mmhr</code> and <code>IMERG_mmmonth</code> using Panoply, see the difference in range of value.</p>
+<ul>
+<li>
+<p>Monthly rainfall in <code>mm/hr</code></p>
+<p><img alt="mmhr" src="../img/imerg-mmhr.png" /></p>
+</li>
+<li>
+<p>Monthly rainfall in <code>mm/month</code></p>
+<p><img alt="mmhr" src="../img/imerg-mmmonth.png" /></p>
+</li>
+</ul>
+<p>I am aware the unit text still in <code>mm/hr</code>, I will explain how to edit it in the next topic.</p>
+<h2 id="create-single-netcdf-file">Create single netCDF file</h2>
+<p>Navigate to <code>IMERG_mmmonth</code> folder in Terminal. Loop all files in the folder <code>IMERG_mmmonth</code> to make <code>time</code> the record dimension/variable used for concatenating files using <code>ncks</code> command</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">for</span> fl <span class="k">in</span> *.nc4<span class="p">;</span> <span class="k">do</span> ncks -O --mk_rec_dmn <span class="nb">time</span> <span class="nv">$fl</span> <span class="nv">$fl</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></div>
+<p><img alt="Add Time" src="../img/imerg-addtime.png" /></p>
+<p>Concatenates all <code>nc4</code> files in <code>IMERG_mmmonth</code> folder into one <code>nc4</code> file named <code>IMERG_concat.nc4</code> using <code>ncrcat</code> command</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncrcat -h *.nc4 IMERG_concat.nc4
+</code></pre></div>
+<p><img alt="Concatenates" src="../img/imerg-concatenates.png" /></p>
+<p>Check the header</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncdump -h IMERG_concat.nc4
+</code></pre></div>
+<p><img alt="ncdump Concatenates" src="../img/imerg-ncdumpccts.png" /></p>
+<p>And the variables for precipitation is <code>time</code>,<code>lon</code>,<code>lat</code> but SPI calculation required:</p>
+<ul>
+<li><code>lat</code>,<code>lon</code>,<code>time</code> or</li>
+<li><code>time</code>,<code>lat</code>,<code>lon</code></li>
+</ul>
+<p>Let's re-order the variables into <code>time</code>,<code>lat</code>,<code>lon</code> using <code>ncpdq</code> command, to be able running the SPI code in Python</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncpdq -a time,lat,lon IMERG_concat.nc4 IMERG_concat_ncpdq0.nc4
+</code></pre></div>
+<p><img alt="IMERG ncpdq1" src="../img/imerg-ncpdq1.png" /></p>
+<p>Check again the header for the result <code>IMERG_concat_ncpdq0.nc4</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncdump -h IMERG_concat_ncpdq0.nc4
+</code></pre></div>
+<p><img alt="IMERG ncpdq2" src="../img/imerg-ncpdq2.png" /></p>
+<p>And the variables for precipitation is <code>time</code>,<code>lat</code>,<code>lon</code>, it means the result is correct. But the unit still in <code>mm/hr</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Notes on re-ordering process (Case by case)</strong></p>
+<p>After re-ordering the variables, sometimes user experience <code>lat</code> or <code>lon</code> dimension becomes <code>UNLIMITED</code> which is wrong. The <code>time</code> dimension should be the <code>UNLIMITED</code> dimension.</p>
+<p><img alt="Lat unlimited" src="../img/lat_unlimited.png" /></p>
+<p>Fortunately you can do this to fix the <code>lat</code> or <code>lon</code> dimension who becomes <code>UNLIMITED</code> using <code>ncks</code> command below:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncks --fix_rec_dmn lat IMERG_concat_ncpdq0.nc4 -o outfixed.nc4 <span class="p">;</span> mv outfixed.nc4 IMERG_concat_ncpdq0.nc4
+</code></pre></div>
+<p>And to make <code>UNLIMITED</code> the <code>time</code> dimension again using <code>ncks</code> command below:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncks --mk_rec_dmn <span class="nb">time</span> IMERG_concat_ncpdq0.nc4 -o outfunlim.nc4 <span class="p">;</span> mv outunlim.nc4 IMERG_concat_ncpdq0.nc4
+</code></pre></div>
+<p>If you don't come accross the problem, <code>lat</code> or <code>lon</code> dimension becomes <code>UNLIMITED</code>, then skip above process and go directly to step below.</p>
+</div>
+<p>SPI code does not recognized unit <code>mm/hr</code> or <code>mm/month</code>, I need to edit into <code>mm</code>. To edit the unit attribute names, I will use <code>ncatted</code> command, follow below code.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncatted -a units,precipitation,modify,c,<span class="s1">&#39;mm&#39;</span> IMERG_concat_ncpdq0.nc4 IMERG_concat_ncpdq1.nc4
+</code></pre></div>
+<p><img alt="IMERG ncatted1" src="../img/imerg-ncatted1.png" /></p>
+<p>Check again the header for <code>IMERG_concat_ncpdq1.nc4</code>, to make sure everything is correct.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ncdump -h IMERG_concat_ncpdq1.nc4
+</code></pre></div>
+<p><img alt="IMERG ncatted2" src="../img/imerg-ncatted2.png" /></p>
+<p>And the units already in <code>mm</code></p>
+<p>Once this has completed, the dataset can be used as input to this package for computing SPI. From above picture, some of the precipitation attribute are still wrong: <code>DimensionNames</code> and <code>Units</code>. I can leave it as is, SPI code will only read <code>units</code> and variables <code>precipitation(time,lat,lon)</code></p>
+<p>As the input data preparation is completed, move the file <code>IMERG_concat_ncpdq1.nc4</code> to main folder <code>Input_nc</code> and rename into <code>java_cli_imerg_1months_2000_2020.nc</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>mv IMERG_concat_ncpdq1.nc4 ../../../Input_nc/java_cli_imerg_1months_2000_2020.nc
+</code></pre></div>
+<p><img alt="IMERG ncfinal" src="../img/imerg-ncfinal.png" /></p>
+<p>Make sure the file <code>java_cli_imerg_1months_2000_2020.nc</code> is available at <code>Input_nc</code> folder</p>
+<p><img alt="IMERG inputnc" src="../img/imerg-inputnc.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../rainfall/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3. Preparing input for SPI" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              3. Preparing input for SPI
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../chirpstif/" class="md-footer__link md-footer__link--next" aria-label="Next: 3.2. CHIRPS monthly GeoTIFF" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              3.2. CHIRPS monthly GeoTIFF
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
